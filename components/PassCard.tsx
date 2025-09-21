@@ -99,8 +99,15 @@ export function PassCard({ student, onDownload }: PassCardProps) {
           {/* QR Code */}
           <div className="text-center">
             <div className="inline-block p-4 bg-white rounded-lg shadow-sm">
+              <div className="download-hidden">
+                <QRCodeSVG value={verificationUrl} size={120} level="M" />
+              </div>
               {qrCodeUrl && (
-                <img src={qrCodeUrl} alt="QR Code" className="mx-auto" />
+                <img
+                  src={qrCodeUrl}
+                  alt="QR Code"
+                  className="mx-auto hidden download-visible"
+                />
               )}
             </div>
             <p className="text-xs text-gray-500 mt-2">
