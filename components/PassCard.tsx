@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Download, Calendar, User, GraduationCap } from "lucide-react";
-import { QRCodeSVG } from "qrcode.react";
+import { QRCodeSVG } from "qrcode.react"; // ✅ keep your package
 import html2canvas from "html2canvas";
 import { Student } from "@/lib/supabase";
 import { generateVerificationUrl } from "@/lib/pass-generator";
@@ -16,7 +16,19 @@ interface PassCardProps {
 
 export function PassCard({ student, onDownload }: PassCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
+  const [qrCodeUrl, setQrCodeUrl] = useState<string | null>(null);
   const verificationUrl = generateVerificationUrl(student.id);
+
+  // ✅ Convert QRCodeSVG to <img> for html2canvas
+  useEffect(() => {
+    const svg = document.getElementById(`qr-${student.id}`);
+    if (svg) {
+      const xml = new XMLSerializer().serializeToString(svg);
+      const svg64 = btoa(xml);
+      const b64Start = "data:image/svg+xml;base64,";
+      setQrCodeUrl(b64Start + svg64);
+    }
+  }, [student.id, verificationUrl]);
 
   const handleDownload = async () => {
     if (!cardRef.current) return;
@@ -25,9 +37,7 @@ export function PassCard({ student, onDownload }: PassCardProps) {
       const canvas = await html2canvas(cardRef.current, {
         backgroundColor: "#ffffff",
         scale: 2,
-        logging: false,
-        useCORS: true, // ✅ allow image & SVG capture
-        foreignObjectRendering: true, // ✅ capture inline SVG (QRCodeSVG)
+        useCORS: true,
       });
 
       const link = document.createElement("a");
@@ -89,7 +99,9 @@ export function PassCard({ student, onDownload }: PassCardProps) {
           {/* QR Code */}
           <div className="text-center">
             <div className="inline-block p-4 bg-white rounded-lg shadow-sm">
-              <QRCodeSVG value={verificationUrl} size={120} level="M" />
+              {qrCodeUrl && (
+                <img src={qrCodeUrl} alt="QR Code" className="mx-auto" />
+              )}
             </div>
             <p className="text-xs text-gray-500 mt-2">
               Scan to verify entry pass
