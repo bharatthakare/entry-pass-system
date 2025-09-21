@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Users, Activity, Shield, ArrowLeft } from "lucide-react";
-import { isAdminLoggedIn, logoutAdmin } from "@/lib/auth";
+import { isAdminLoggedInLocal, logoutAdmin } from "@/lib/auth";
 import { supabase, Student, PassLog } from "@/lib/supabase";
 import Link from "next/link";
 
@@ -21,11 +21,7 @@ export default function AdminDashboard() {
 
   // ✅ updated: async check for Supabase session + admin record
   useEffect(() => {
-    const checkAdmin = async () => {
-      const ok = await isAdminLoggedIn();
-      setIsAuthenticated(ok);
-    };
-    checkAdmin();
+    setIsAuthenticated(isAdminLoggedInLocal());
   }, []);
 
   useEffect(() => {
