@@ -13,7 +13,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Shield, UserPlus, Users } from 'lucide-react';
-import { signInAdmin, isAdminLoggedIn, logoutAdmin } from '@/lib/auth';
+import { signInAdmin, isAdminLoggedInLocal, logoutAdmin } from '@/lib/auth';
 import { supabase } from '@/lib/supabase';
 
 interface AdminModalProps {
