@@ -13,7 +13,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Shield, UserPlus, Users } from 'lucide-react';
-import { signInAdmin, isAdminLoggedIn, logoutAdmin } from '@/lib/auth';
+import { signInAdmin, isAdminLoggedInLocal, logoutAdmin } from '@/lib/auth';
 import { supabase } from '@/lib/supabase';
 
 interface AdminModalProps {
@@ -30,8 +30,9 @@ export function AdminModal({ onAdminLogin }: AdminModalProps) {
   const [loading, setLoading] = useState(false);
 
   React.useEffect(() => {
-    setIsLoggedIn(isAdminLoggedIn());
-  }, []);
+  setIsLoggedIn(isAdminLoggedInLocal());
+}, []);
+
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();

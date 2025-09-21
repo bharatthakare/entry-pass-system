@@ -87,3 +87,5 @@
         |-- 20250920125210_empty_manor.sql
 |-- tailwind.config.ts
 |-- tsconfig.json
+|-- types
+    |-- crypto-js.d.ts
