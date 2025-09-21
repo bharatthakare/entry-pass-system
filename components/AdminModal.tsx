@@ -30,8 +30,9 @@ export function AdminModal({ onAdminLogin }: AdminModalProps) {
   const [loading, setLoading] = useState(false);
 
   React.useEffect(() => {
-    setIsLoggedIn(isAdminLoggedIn());
-  }, []);
+  setIsLoggedIn(isAdminLoggedInLocal());
+}, []);
+
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
