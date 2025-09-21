@@ -78,6 +78,7 @@
 |-- postcss.config.js
 |-- public
     |-- sw.js
+    |-- workbox-4754cb34.js
 |-- README.md
 |-- supabase
     |-- functions
