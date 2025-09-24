@@ -100,15 +100,26 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="bg-gray-50 border-t border-gray-200 mt-16">
-        <div className="max-w-6xl mx-auto px-4 py-8 text-center text-gray-600">
-          <p className="text-sm">
-            © 2025 College Entry Pass System. Secure digital passes for events.
-          </p>
-          <p className="mt-2 text-lg font-bold text-gray-900">
-            Developed by Bharat Thakare
-          </p>
-        </div>
-      </footer>
+  <div className="max-w-6xl mx-auto px-4 py-8 text-center text-gray-600">
+    <p className="text-sm">
+      © 2025 College Entry Pass System. Secure digital passes for events.
+    </p>
+    <p className="mt-2 text-lg font-bold text-gray-900">
+      Developed by Bharat Thakare
+    </p>
+    <div className="mt-2 flex justify-center items-center space-x-2">
+      <Globe className="w-5 h-5 text-gray-700" />
+      <a
+        href="https://bharatthakare.vercel.app/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-blue-600 hover:underline"
+      >
+        bharatthakare.vercel.app
+      </a>
+    </div>
+  </div>
+</footer>
     </div>
   );
 }
