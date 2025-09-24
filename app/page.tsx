@@ -5,7 +5,7 @@ import { StudentForm } from "@/components/StudentForm";
 import { PassCard } from "@/components/PassCard";
 import { AdminModal } from "@/components/AdminModal";
 import { Student } from "@/lib/supabase";
-import { GraduationCap, RefreshCw } from "lucide-react";
+import { GraduationCap, RefreshCw, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function Home() {
